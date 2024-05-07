@@ -1,11 +1,12 @@
 import React from "react";
+
 import { useLocation } from "react-router-dom";
 import * as Pages from "../../staticData/rulesPages.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { NavFooter } from "../../components/navfooter";
 import { NavHeader } from "../../components/navheader";
-export const MovementPage = () => {
+export const PostBattleSequencePage = () => {
     const location = useLocation();
     const myPages = Pages;
     const PageHeader = myPages.pages.find((route) => route.link === location.pathname);
@@ -22,21 +23,10 @@ export const MovementPage = () => {
             <div className="admonitionHeading_Gvgb"><span className="admonitionIcon_Rf37"><FontAwesomeIcon icon={faLightbulb} /></span>Useful House Rule</div>
             <p>{`Fighters can move (voluntarily) through friendly fighters (if having sufficient movement to not overlap any bases).`}</p>
         </div>
-        <h3 className="header-3">CLIMBING</h3>
-        <p>{`Often the ruined buildings of Mordheim do not have stairs or ladders, so your warriors will have to climb to reach the upper floors of buildings.\n\nAny model (except animals!) can climb up or down fences, walls, etc. He must be touching what he wants to climb at the start of his movement phase. He may climb up to his total Movement in a single movement phase (but cannot run while he is climbing). Any remaining movement can be used as normal. If the height is more than the model’s normal move, he cannot climb the wall.\n\nTo climb, a model must take an Initiative test. If he fails it whilst climbing up, he cannot move that turn. If he fails it while climbing down, he falls from where he started his descent (see the Falling section).`}</p>
-        <h3 className="header-3">Jumping down</h3>
-        <p>{`Your warrior may jump down from high places (up to a maximum height of 6") such as walkways and balconies at any time during his movement phase.\n\nTake an Initiative test for every full 2" he jumps down.\n\nIf he fails any of the tests, the model falls from the point where he jumped, takes damage (see Falling) and may not move any more during the movement phase. If successful, the model can continue his movement as normal (jumping down does not use up any of the model’s Movement allowance).`}</p>
-        <h3 className="header-3">Diving charge</h3>
-        <p>{`You may charge any enemy troops that are below a balcony or overhang, etc, that your model is on.\n\nIf an enemy model is within 2" of the place where your warrior lands, he may make a diving charge against it.\n\nTake an Initiative test for each full 2" of height your model jumped down from, up to a maximum of 6", like a normal jump.\n\nIf he fails any of them, your model has fallen and suffers damage, and its activation ends immediately.\n\nIf he succeeds, the model gains a +1 Strength bonus and +1 to hit bonus but only until the end of this turn.`}</p>
-        <h3 className="header-3">Falling</h3>
-        <p>{`A model that falls takes D3 hits at a Strength equal to the height in inches that it fell (eg, if the model fell 4", it would take D3 hits at Strength 4).\n\nNo armour saves apply.\n\nThe activation of a model that falls ends immediately, even if it is not hurt.`}</p>
-        <h3 className="header-3">Jumping over gaps</h3>
-        <p>{`Models may jump over gaps (up to a maximum of 3") and streets, (eg, from the roof of a building to another). Deduct the distance jumped from the model’s movement but remember that you cannot measure the distance before jumping.\n\nIf your model does not have enough movement to jump the distance, he automatically falls. If your model is able to cover the distance, he must pass an Initiative test or fall. A model may jump over a gap and still fire a missile weapon if it is not running.\n\nIt may also jump as part of its charge or running move.`}</p>
         <h2 className="header-2">THE 1" RULE</h2>
         <p>{`Fighters cannot move to within 1" of an enemy fighter during their activation, unless that enemy fighter is Prone and Seriously Injured. Vehicles suffer no such restriction and can move to within 1" of any enemy model during their activation, as described on the opposite page.\n\nThe only exception to this rule is when a Standing and Active fighter performs a Charge (Double) action, in which case they may move to within 1" of one or more enemy fighters, provided that they end their movement in base to base contact with one or more enemy fighters. If a fighter performing a Charge (Double) action has sufficient movement to get within 1" of an enemy fighter but does not have sufficient movement to make it into base to base contact with the enemy fighter, they must stop moving 1" away.\n\nIt may occur that a fighter is moved involuntarily to within 1" of an enemy model. For example, a fighter with the Hurl skill may throw an enemy fighter that they are engaged with, which may result in that fighter coming into contact with other fighters, friendly or enemy. Should this happen, the normal rules described previously are temporarily suspended until the movement and any other effects it causes have been fully resolved (such as in the previous Hurl example, in which case the fighters would suffer hits as a result of being thrown into contact with one another). Once they have been, move the model that was involuntarily moved by the shortest route possible until it is 1" away from the enemy model.`}</p>
         <h2 className="header-2">DIRECTLY TOWARDS & DIRECTLY AWAY FROM</h2>
         <p>{`Sometimes, the rules will say that a model needs to move directly towards another model. To do this, trace an imaginary straight line that crosses through the centre of each model – the moving model then moves towards the other along this line the required distance. Similarly, to move directly away from another model, follow the same method but move the moving model away.\n\nAs always, this cannot make a model move through a solid terrain feature. Should a model contact a solid terrain feature, it stops and does not move further`}</p>
-
         <NavFooter currentState={PageHeader?.header} />
-        </React.Fragment>;
+    </React.Fragment>;
 };

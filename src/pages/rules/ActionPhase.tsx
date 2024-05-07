@@ -1,16 +1,22 @@
 import React from "react";
-import { NavHeader } from "../../components/navheader";
+
 import { useLocation } from "react-router-dom";
-import * as Pages from "../../staticData/pages.json";
+import * as Pages from "../../staticData/rulesPages.json";
+import { NavFooter } from "../../components/navfooter";
+import { NavHeader } from "../../components/navheader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFireFlameCurved } from "@fortawesome/free-solid-svg-icons";
 export const ActionPhasePage = () => {
     const location = useLocation();
     const myPages = Pages;
-    const PageHeader = myPages.pages.find((route) => route.link === location.pathname)?.header || "";
+    const currentPage = myPages.pages.find((route) => route.link === location.pathname);
+
+    const PageHeader = currentPage;
     return <React.Fragment>
 
-        <NavHeader currentState={PageHeader} />
+        <NavHeader currentPage={currentPage} />
         <header>
-            <h1 className="header-1">{PageHeader}</h1>
+            <h1 className="header-1">{PageHeader?.header}</h1>
             <p>The Action phase consists of just one step:</p>
             <ol>
                 <li>{`Activate Gang:\nStarting with the player that holds Priority, players take turns to choose one of their Ready fighters to activate.`}</li>
@@ -26,15 +32,20 @@ export const ActionPhasePage = () => {
             </ul>
             <p>{`The actions a Ready model can perform are governed by its current Status and Secondary Status. Players should note that certain Conditions will also limit the actions a model may make, most notably Broken. For example, a fighter subject to the Broken condition may only make a Running for Cover (Double) action when activated, regardless of Status or Secondary Status.\n\nIf one player runs out of models to activate, the other player can activate all of their remaining models in an order of their choosing. Once all models have been activated, even if they performed no actions during their activation, the Action phase ends.`}</p>
         </header>
+        <div className="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger">
+                <div className="admonitionHeading_Gvgb"><span className="admonitionIcon_Rf37"><FontAwesomeIcon icon={faFireFlameCurved} /></span>HOUSE RULE</div>
+                <p>For the first activation of every round, each player may only activate <strong>one</strong> model (plus it's group activations).<br/>In every subsequent activation of that round, each player activates <strong>two</strong> models.</p>
+            </div>
         <header>
             <h3 className="header-3">Group Activations</h3>
-            <p>{`Some fighters, most notably Leaders and Champions, have a special rule called ‘Group Activation (X)’ listed on their profile. In all such cases, the ‘X’ in brackets will be replaced by a number (usually 1 or 2). When a player activates such a fighter, they can choose to use this special rule, allowing them to activate additional Ready fighters at the same time as the fighter (note that only fighters can be activated as part of a group activation, vehicles cannot):`}</p>
+            <p>{`Your Leader has a special rule called ‘Group Activation (2)’ listed on their profile. This special rule, allows the player to activate additional Ready fighters at the same time as the fighter:`}</p>
             <p>{`Group Activation (X): When a fighter with this special rule is activated, their controlling player can choose to activate a number of additional Ready friendly fighters equal to the number shown in brackets that are within 3" of this fighter as part of a ‘Group Activation’:`}</p>
             <ul>
                 <li>{`The controlling player must nominate all of the fighters who will be activated in this way before any of them are activated.`}</li>
                 <li>{`Once all participants of the Group Activation have been nominated, the controlling player selects one and activates them as normal, fully resolving their activation before selecting and activating the next. Each fighter activates individually; groups do not activate simultaneously.`}</li>
             </ul>
-            <p>{`Additional fighters with this special rule activated in this way may not themselves use this special rule during this activation.`}</p>
         </header>
+
+        <NavFooter currentState={PageHeader?.header} />
     </React.Fragment>;
 };

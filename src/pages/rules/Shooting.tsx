@@ -1,63 +1,88 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import * as Pages from "../../staticData/rulesPages.json";
+import { NavFooter } from "../../components/navfooter";
 import { NavHeader } from "../../components/navheader";
-import { useLocation } from "react-router-dom";
-import * as Pages from "../../staticData/pages.json";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFireFlameCurved } from "@fortawesome/free-solid-svg-icons";
 export const ShootingPage = () => {
     const location = useLocation();
     const myPages = Pages;
-    const PageHeader = myPages.pages.find((route) => route.link === location.pathname)?.header || "";
+    const PageHeader = myPages.pages.find((route) => route.link === location.pathname);
     return <React.Fragment>
 
-        <NavHeader currentState={PageHeader} />
+        <NavHeader currentPage={PageHeader} />
         <header>
-            <h1 className="header-1">{PageHeader}</h1>
-            <p>{`There are several ways in which a model can make a ranged attack against an enemy model, most frequently by performing an action that allows it to do so, but certain skills and gang tactics will also allow various models to make a ranged attack outside of the game’s normal sequence.\n\nWhenever a model makes a ranged attack against one or more enemy models, this sequence is followed:`}</p>
+            <h1 className="header-1">{PageHeader?.header}</h1>
+            <p>{`Whenever a model makes a ranged attack against one or more enemy models, this sequence is followed:`}</p>
             <ol>
-                <li>Assess Target Priority</li>
+                <li>Who can shoot</li>
+                <li>Assess Target</li>
                 <li>Declare the Shot</li>
                 <li>Measure Range</li>
                 <li>Make the Hit Roll</li>
                 <li>Resolve Hits</li>
             </ol>
         </header>
-        <h2 className="header-2">1. ASSESS TARGET PRIORITY</h2>
-        <p>{`When a model makes a ranged attack, it must be against the closest eligible target. An eligible target is an enemy model that is within both the vision arc and line of sight of a fighter, or within the vision arc`}</p>
-        <div className="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger">
-            <div className="admonitionHeading_Gvgb"><span className="admonitionIcon_Rf37"><FontAwesomeIcon icon={faFireFlameCurved} /></span>HOUSE RULE (NECRODAMUS, A&A)</div>
-            <p>{`You must target the closest visible enemy regardless of facing. This avoids facing fighters in awkward directions to circumvent the cool check for seeing the actual closest enemy.`}</p>
-        </div>
-        <p>{`An enemy model is an eligible target even if it is engaged by a friendly fighter. However, if the closest eligible target is Prone and Seriously Injured, Wrecked or harder to hit than one further away (due to negative modifiers applied to the Hit roll), the attacking model may choose to ignore it. Otherwise, to make a ranged attack against an eligible target that is not the closest, the attacking model must first pass a Cool test (in the case of a vehicle, use the Cool characteristic of either the crew, or the fighter manning the weapon being used, as appropriate). If this test is passed, the ranged attacks may be made against any eligible target. If it is failed, a ranged attack can only be made against the closest eligible target.\n\nFighters in Hiding: The attacking model cannot target an enemy fighter if they are both Prone (either Pinned or Seriously Injured) and in partial or full cover – they are assumed to be keeping their head very low!`}</p>
-        <h2 className="header-2">2. DECLARE THE SHOT</h2>
-        <p>{`Once target priority has been assessed, choose a ranged weapon the model is armed with, and nominate an eligible target to be the target of the ranged attack.`}</p>
-        <h2 className="header-2">3. MEASURE RANGE</h2>
-        <p>{`Next, measure the distance between the model making the ranged attack and the target, to ensure that the target is within the range of the weapon. In the case of a fighter, range is measured from the model to the nearest point of the target model. In the case of a vehicle, range is measured from the weapon to the nearest point of the target model.\n\nIf the target is outside the weapon’s Long range, the attack automatically misses. However, the Firepower dice must still be rolled.`}</p>
-        <h2 className="header-2">4. MAKE THE HIT ROLL</h2>
-        <p>{`A Hit roll is a Ballistic Skill test made against the BS of the model making the shot. In the case of a fighter, use the BS of the fighter. In the case of a vehicle, use the BS of either the crew, or the fighter manning the weapon being used, as appropriate. The following modifiers may apply to the Hit roll:`}</p>
+        <h2 className="header-2">1. Who can shoot</h2>
+        <p>{`Each model can shoot, so long as he can see a target and assuming he has a suitable weapon or can cast spells or prayers. See the `}<Link to="/magic">Magic</Link> section for how to resolve these.</p>
+        <p>{`He may not fire in the following circumstances: if he is engaged in hand-to-hand combat, has rallied this turn or is seriously injured.\n\nTo shoot at a target, a model must be able to see it, and the only way to check this is to stoop over the tabletop for a model's eye view. Models can see all around themselves (ie, 360°), and they may be turned freely to face in any direction before firing. Note that turning on the spot does not count as moving.`}</p>
+        <h2 className="header-2">2. ASSESS TARGET</h2>
+        <p>{`You must shoot at the closest enemy, as he represents the most immediate threat and therefore the most obvious target. However, you may shoot at a more distant target if it is easier to hit or if closer models are stunned or knocked down (see diagram on next page). For example, a closer target may be hard to hit because it is in cover, whilst a more distant target might be in the open and therefore an easier shot.\n\nYou may always choose to shoot at a Large Target if you can see it, whether it is in cover or not and even if it is not the closest target.\n\nYou can shoot at models that are fleeing, knocked down or stunned, but you can choose to ignore them, because they do not represent an immediate threat. It is better to shoot the closest standing enemy model instead.\n\nNote that you may not shoot at models that are engaged in close combat with a member of your warband`}</p>
+        <h3 className="header-3">Shooting from an elevated position</h3>
+        <p>{`A model situated in an elevated position (i.e., anything that is more than 2" above the table surface, such as an upper floor of a building), may freely pick any target he can see and shoot at it.\n\nThe exception to this rule is that if there are enemies in the same building and in line of sight of the shooter, he must shoot at these, as they present a more immediate threat.`}</p>
+        <h2 className="header-2">3. DECLARE THE SHOT</h2>
+        <p>{`Once the target has been assessed, choose a ranged weapon the model is armed with, and nominate an eligible target to be the target of the ranged attack.`}</p>
+        <h2 className="header-2">4. MEASURE RANGE</h2>
+        <p>{`Next, measure the distance between the model making the ranged attack and the target, to ensure that the target is within the range of the weapon. In the case of a fighter, range is measured from the model to the nearest point of the target model.\n\nIf the target is outside the weapon's range, the attack automatically misses.`}</p>
+        <h2 className="header-2">5. MAKE THE HIT ROLL</h2>
+        <p>{`A Hit roll is a Ballistic Skill test made against the BS of the model making the shot according to this table.`}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>BS of the shooter</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>D6 roll needed</td>
+                    <td>6+</td>
+                    <td>5+</td>
+                    <td>4+</td>
+                    <td>3+</td>
+                    <td>2+</td>
+                    <td>1+</td>
+                    <td>1+</td>
+                    <td>1+</td>
+                    <td>1+</td>
+                    <td>1+</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>{`The following modifiers may apply to the Hit roll:`}</p>
         <ul>
-            <li>In Partial Cover (-1): If the target is in partial cover (see Cover), apply a -1 modifier.</li>
-            <li>In Full Cover (-2): If the target is in full cover (see Cover), apply a -2 modifier.</li>
-            <li>Accuracy Modifier (+/-?): If the weapon has an accuracy modifier on its profile and the target is within that range, apply the modifier.</li>
+            <li>Cover (-1): If any part of the model is obscured by scenery or other models then it counts as being in cover.</li>
             <li>Target is Engaged (-1): If the target is Standing and Engaged, apply a -1 modifier.</li>
+            <li>Long Range (-1): If you are shooting at a target that is more than half of your weapon’s maximum range away.</li>
+            <li>Moving and Shooting (-1): If your model has moved at all (other than standing up, or turning to face your target) during this turn.</li>
+            <li>Large Target (+1): If either the target model has the Large Target special rule (such as an Ogre).</li>
             <li>Target is Prone (-1, Long Range Only): If the target is Prone (either Pinned or Seriously Injured) and the attacker is firing at Long range, apply a -1 modifier.</li>
-            <li>Target is a Point on the Battlefield (-2): If the target is a point on the battlefield and the weapon being fired does not have the Smoke trait, apply a -2 modifier.</li>
             <li>Rolls of a Natural 1: If, when making a ranged attack, the hit roll is a natural 1, the attack automatically misses, regardless of any modifiers that may apply.</li>
-            <li>Improbable Shots: If the negative modifiers applied to a Hit roll mean that it is impossible to score a hit, the attack is an Improbable Shot. To make a Hit roll for an Improbable Shot, roll a D6. On a 1-5, the attack misses. On a 6, there is a chance that it will hit; make a second Hit roll as normal, using only the fighter’s Ballistic Skill and ignoring any other modifiers.</li>
+            <li>Improbable Shots: If the negative modifiers applied to a Hit roll mean that it is impossible to score a hit, the attack is an Improbable Shot. To make a Hit roll for an Improbable Shot, roll a D6. On a 1-5, the attack misses. On a 6, there is a chance that it will hit; make a second Hit roll modified by the BS of the shooter.</li>
         </ul>
         <h3 className="header-3">HIT FIGHTERS BECOME PINNED</h3>
         <p>{`The vast majority of fighters, when they find themselves under enemy fire, will duck for cover and attempt to keep their head down. To represent this, when a Standing and Active fighter is hit by a ranged attack, they are automatically placed Prone and Pinned. Players should note that a Standing and Engaged fighter cannot become Prone and Pinned.`}</p>
-        <h2 className="header-2">5. RESOLVE HITS</h2>
-        <p>{`For each BS test that is passed when making a Hit roll, a hit is scored. Each hit scored is resolved as described in Resolving Hits.`}</p>
-        <h3 className="header-3">STRAY SHOTS</h3>
-        <p>{`If an attack with a ranged weapon misses, there is a chance that another fighter, friend or foe, that is Engaging the target will be hit. Equally, there is a chance that any model, friend or foe, that is within 1" of the line along which the range between the attacker and the target was measured, will be hit.\n\nIf the attack misses, roll a D6 for each model that is at risk of being hit, starting with the model closest to the attacker. On the roll of 1, 2 or 3, that model is hit by the attack. On a 4, 5 or 6, the shot misses it – move on to the next model at risk of being hit.`}</p>
-        <div className="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger">
-            <div className="admonitionHeading_Gvgb"><span className="admonitionIcon_Rf37"><FontAwesomeIcon icon={faFireFlameCurved} /></span>HOUSE RULE (NECRODAMUS, A&A)</div>
-            <p>{`Stray shots only hit other fighters on a 6+.`}</p>
-        </div>
+        <h2 className="header-2">6. RESOLVE HITS</h2>
+        <p>{`For each BS test that is passed when making a Hit roll, a hit is scored. Each hit scored is resolved as described in `}<Link to="/resolve-hits">Resolving Hits.</Link></p>
         <p>{`If the attack would have caused more than one hit, follow this sequence for every hit.`}</p>
-        <h3 className="header-3">THE FIREPOWER DICE</h3>
-        <h3 className="header-3">BLAST MARKERS</h3>
-        <h3 className="header-3">FLAME TEMPLATES</h3>
+        <NavFooter currentState={PageHeader?.header} />
     </React.Fragment>;
 };

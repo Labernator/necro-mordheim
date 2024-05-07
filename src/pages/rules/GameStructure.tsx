@@ -1,16 +1,18 @@
 import React from "react";
-import { NavHeader } from "../../components/navheader";
+
 import { useLocation } from "react-router-dom";
-import * as Pages from "../../staticData/pages.json";
+import * as Pages from "../../staticData/rulesPages.json";
+import { NavFooter } from "../../components/navfooter";
+import { NavHeader } from "../../components/navheader";
 export const GameStructurePage = () => {
     const location = useLocation();
     const myPages = Pages;
-    const PageHeader = myPages.pages.find((route) => route.link === location.pathname)?.header || "";
+    const PageHeader = myPages.pages.find((route) => route.link === location.pathname);
     return <React.Fragment>
 
-        <NavHeader currentState={PageHeader} />
+        <NavHeader currentPage={PageHeader} />
         <header>
-            <h1 className="header-1">{PageHeader}</h1>
+            <h1 className="header-1">{PageHeader?.header}</h1>
             <p>A game of Mordheim is split into several rounds. During a round, players will determine who has Priority, take turns activating one or more fighters and perform actions with them. They will attempt to recover injured fighters, rally fleeing models and determine if their warband can hold its nerve in the face of the enemy.</p>
         </header>
         <header>
@@ -35,11 +37,11 @@ export const GameStructurePage = () => {
             <h3 className="header-3">End Phase</h3>
             <p>During the End phase:</p>
             <ol>
-                <li>{`Bottle Checks:\nIf a player has at least one Prone and Seriously Injured or Out of Action fighter, they will have to make a Bottle check for their gang. Often, passing this check is a formality, but as the casualties increase, failing a Bottle check becomes ever more likely!`}</li>
-                <li>{`Fleeing the Battlefield:\nIf either gang has failed a Bottle check, the controlling player makes a Cool test for each of their models that is still on the battlefield. Any models that fail will flee the battlefield.`}</li>
-                <li>{`Recover & Restart:\nStarting with the player that holds Priority, both players make Recovery tests for any Prone and Seriously Injured fighters and/or Restart tests for any Stationary and Stalled vehicles belonging to their gang.`}</li>
-                <li>{`Rally Tests:\nStarting with the player that holds Priority, both players make Cool tests for Broken models belonging to their gang to see if they can Rally.`}</li>
+                <li>{`Rout tests:\nA player must make a Rout test at the start of his turn if a quarter (25%) or more of his warband are Seriously Injured, Broken or Out of Action.`}</li>
+                <li>{`Recover:\nStarting with the player that holds Priority, both players make Recovery tests for any Prone and Seriously Injured fighters.`}</li>
+                <li>{`Rally Tests:\nStarting with the player that holds Priority, both players make Leadership tests for Broken models belonging to their gang to see if they can Rally.`}</li>
             </ol>
         </header>
+        <NavFooter currentState={PageHeader?.header} />
     </React.Fragment>;
 };

@@ -307,7 +307,7 @@ table thead,table tr:nth-child(2n) {
   --ifm-list-paragraph-margin: 1rem;
   --ifm-table-cell-padding: 0.75rem;
   --ifm-table-background: #0000;
-  --ifm-table-stripe-background: #00000008;
+  --ifm-table-stripe-background: #ffffff12;
   --ifm-table-border-width: 1px;
   --ifm-table-border-color: var(--ifm-color-emphasis-300);
   --ifm-table-head-background: inherit;

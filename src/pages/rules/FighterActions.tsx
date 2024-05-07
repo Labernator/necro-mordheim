@@ -1,18 +1,19 @@
 import React from "react";
-import { NavHeader } from "../../components/navheader";
-import { useLocation } from "react-router-dom";
-import * as Pages from "../../staticData/pages.json";
+import { Link, useLocation } from "react-router-dom";
+import * as Pages from "../../staticData/rulesPages.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import { NavFooter } from "../../components/navfooter";
+import { NavHeader } from "../../components/navheader";
 export const FighterActionsPage = () => {
     const location = useLocation();
     const myPages = Pages;
-    const PageHeader = myPages.pages.find((route) => route.link === location.pathname)?.header || "";
+    const PageHeader = myPages.pages.find((route) => route.link === location.pathname);
     return <React.Fragment>
 
-        <NavHeader currentState={PageHeader} />
+        <NavHeader currentPage={PageHeader} />
         <header>
-            <h1 className="header-1">{PageHeader}</h1>
+            <h1 className="header-1">{PageHeader?.header}</h1>
             <p>{`The following pages detail all of the core actions fighters may perform in Necromunda. This list is by no means exhaustive, however, with skills, scenarios, special terrain features and more introducing further actions that fighters may perform.`}</p>
         </header>
         <h2 className="header-2">STANDING FIGHTERS</h2>
@@ -28,11 +29,13 @@ export const FighterActionsPage = () => {
             <li>Attempt to jump down to a level below.</li>
         </ul>
         <h3 className="header-3">CHARGE (DOUBLE)</h3>
-        <p>{`The fighter moves as if making a Move (Simple) action, but adds D3" to the distance they can move. A charging fighter can move to within 1" of one or more enemy fighters that are Standing and either Active or Engaged, or that are Prone and either Pinned or Seriously Injured, but if they do move to within 1" they must have sufficient movement to get into base to base contact with at least one enemy fighter. If they do not have sufficient movement to get into base to base contact, they must stop 1" away. If they are Standing and Engaged at the end of this move, they must immediately make a free Fight (Basic) action. If they are Standing and Engaged with a Prone and Pinned fighter at the end of this move, that fighter changes their status to Standing and Active.`}</p>
+        <p>{`The fighter moves as if making a Move (Simple) action, but adds D6" to the distance they can move. A charging fighter can move to within 1" of one or more enemy fighters that are Standing and either Active or Engaged, or that are Prone and either Pinned or Seriously Injured, but if they do move to within 1" they must have sufficient movement to get into base to base contact with at least one enemy fighter. If they do not have sufficient movement to get into base to base contact, they must stop 1" away. If they are Standing and Engaged at the end of this move, they must immediately make a free Fight (Basic) action. If they are Standing and Engaged with a Prone and Pinned fighter at the end of this move, that fighter changes their status to Standing and Active.`}</p>
         <h3 className="header-3">TAKE COVER (BASIC)</h3>
         <p>{`This fighter moves up to half their Movement characteristic and is then Prone and Pinned.`}</p>
         <h3 className="header-3">SHOOT (BASIC)</h3>
-        <p>{`The fighter makes an attack with a ranged weapon – see Shooting.`}</p>
+        <p>{`The fighter makes an attack with a ranged weapon – see `}<Link to="/shooting">Shooting.</Link></p>
+        <h3 className="header-3">USE MAGIC/PRAYER (BASIC)</h3>
+        <p>{`The fighter casts a spell or says a prayer - see `}<Link to="/magic">Magic.</Link> {`Note: A player can either use magic OR shoot, not both in the same turn.`}</p>
         <h3 className="header-3">AIM (BASIC)</h3>
         <p>{`If the fighter makes a subsequent Shoot (Basic) action this activation, apply a +1 modifier to any Hit rolls they make.`}</p>
         <h3 className="header-3">RELOAD (BASIC)</h3>
@@ -46,7 +49,7 @@ export const FighterActionsPage = () => {
         <h3 className="header-3">SMASH OPEN LOOT CASKET (BASIC)</h3>
         <p>{`If this fighter is within 1" of a Loot Casket, roll a D6 and add their Strength. If the total is 6 or more, the casket is opened. However, subtract 1 from the roll to determine the casket’s contents, to a minimum of 1 (see Opening Loot Caskets).`}</p>
         <h3 className="header-3">BYPASS LOOT CASKET LOCK (BASIC)</h3>
-        <p>{`If this fighter is within 1" of a Loot Casket, make an Intelligence test for this fighter. If the test is passed, the casket is opened.`}</p>
+        <p>{`If this fighter is within 1" of a Loot Casket, make an Initiative test for this fighter. If the test is passed, the casket is opened.`}</p>
         <h3 className="header-3">CARRY LOOT CASKET (SIMPLE)</h3>
         <p>{`If this fighter is within 1" of a Loot Casket, they may make a Move (Simple) action, carrying the Loot Casket with them. When the action ends, the casket is placed in base contact with this fighter.`}</p>
         <h2 className="header-2">STANDING & ENGAGED FIGHTERS</h2>
@@ -82,5 +85,6 @@ export const FighterActionsPage = () => {
             <li>As far away from any enemy models as possible.</li>
         </ul>
         <p>{`If a Broken fighter is Standing and Engaged when activated, they must make an Initiative test. If it is passed, they must move as described previously. Each enemy fighter that is engaged with them makes an Initiative test and if passed, they can make Reaction attacks before the Broken fighter is moved. If the Broken fighter fails the Initiative test, they remain engaged and can perform no further actions.`}</p>
+        <NavFooter currentState={PageHeader?.header} />
     </React.Fragment>;
 };
