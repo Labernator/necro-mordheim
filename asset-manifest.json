@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/necro-mordheim/static/css/main.d6592a3d.css",
-    "main.js": "/necro-mordheim/static/js/main.09284f30.js",
+    "main.js": "/necro-mordheim/static/js/main.bfd7ff58.js",
     "index.html": "/necro-mordheim/index.html",
     "main.d6592a3d.css.map": "/necro-mordheim/static/css/main.d6592a3d.css.map",
-    "main.09284f30.js.map": "/necro-mordheim/static/js/main.09284f30.js.map"
+    "main.bfd7ff58.js.map": "/necro-mordheim/static/js/main.bfd7ff58.js.map"
   },
   "entrypoints": [
     "static/css/main.d6592a3d.css",
-    "static/js/main.09284f30.js"
+    "static/js/main.bfd7ff58.js"
   ]
 }
