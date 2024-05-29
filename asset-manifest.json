@@ -1,13 +1,19 @@
 {
   "files": {
-    "main.css": "/necro-mordheim/static/css/main.d6592a3d.css",
-    "main.js": "/necro-mordheim/static/js/main.5a30d86b.js",
+    "main.css": "/necro-mordheim/static/css/main.1fd6b8c8.css",
+    "main.js": "/necro-mordheim/static/js/main.fd901b8c.js",
+    "static/js/213.5c5c1394.chunk.js": "/necro-mordheim/static/js/213.5c5c1394.chunk.js",
+    "static/js/732.66cc1b4e.chunk.js": "/necro-mordheim/static/js/732.66cc1b4e.chunk.js",
+    "static/media/light-texture-bg-sm.jpg": "/necro-mordheim/static/media/light-texture-bg-sm.1765786029d41dd51ed7.jpg",
+    "static/media/bg-menu-sm.png": "/necro-mordheim/static/media/bg-menu-sm.5cdfa55048f6280f375e.png",
     "index.html": "/necro-mordheim/index.html",
-    "main.d6592a3d.css.map": "/necro-mordheim/static/css/main.d6592a3d.css.map",
-    "main.5a30d86b.js.map": "/necro-mordheim/static/js/main.5a30d86b.js.map"
+    "main.1fd6b8c8.css.map": "/necro-mordheim/static/css/main.1fd6b8c8.css.map",
+    "main.fd901b8c.js.map": "/necro-mordheim/static/js/main.fd901b8c.js.map",
+    "213.5c5c1394.chunk.js.map": "/necro-mordheim/static/js/213.5c5c1394.chunk.js.map",
+    "732.66cc1b4e.chunk.js.map": "/necro-mordheim/static/js/732.66cc1b4e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d6592a3d.css",
-    "static/js/main.5a30d86b.js"
+    "static/css/main.1fd6b8c8.css",
+    "static/js/main.fd901b8c.js"
   ]
 }
